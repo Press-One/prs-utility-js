@@ -2,7 +2,7 @@ prs-utility 是 PRS 提供的算法工具库，包含项目中需要使用的所
 
 ## 安装
 
-通过 npm 安装:
+通过 npm 安装:
 ```
 npm install prs-utility --save
 ```
