@@ -4,6 +4,7 @@
   "version": "0.0.2",
   "homepage": "https://press.one",
   "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "author": "PRESS.one",
   "repository": {
     "type": "git",

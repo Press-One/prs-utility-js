@@ -59,11 +59,8 @@ var createKeyPair = function createKeyPair() {
   };
 };
 
-var signBlockData = function signBlockData(data, privateKey) {
-  // get hash
-  var sqs = getSortedQS(data);
-  var hash = keccak256(sqs); // get signature
-
+var signHash = function signHash(hash, privateKey) {
+  // get signature
   var key = ec.keyFromPrivate(privateKey, 'hex');
   var signature = key.sign(hash);
   var sigHex = signature.r.toString(16, 32) + signature.s.toString(16, 32) + signature.recoveryParam.toString();
@@ -71,6 +68,13 @@ var signBlockData = function signBlockData(data, privateKey) {
     hash: hash,
     signature: sigHex
   };
+};
+
+var signBlockData = function signBlockData(data, privateKey) {
+  // get hash
+  var sqs = getSortedQS(data);
+  var hash = keccak256(sqs);
+  return signHash(hash, privateKey);
 };
 
 var sigToAddress = function sigToAddress(msghash, sig) {
@@ -86,8 +90,12 @@ module.exports = {
   privateKeyToAddress: privateKeyToAddress,
   keccak256: keccak256,
   createKeyPair: createKeyPair,
+  signHash: signHash,
   signBlockData: signBlockData,
-  sigToAddress: sigToAddress
+  sigToAddress: sigToAddress,
+  getSortedQS: getSortedQS,
+  bufToHex: bufToHex,
+  hexToBuf: hexToBuf
 };
 
 },{"./util":2,"elliptic":74,"ethereumjs-util":90,"js-sha3":113,"keythereum":120,"secp256k1":175}],2:[function(require,module,exports){
