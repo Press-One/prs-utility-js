@@ -17,11 +17,10 @@ declare module 'prs-utility' {
   export var keccak256: Hash;
   export function createKeyPair(options?: object): KeyPair;
   export function signHash(hash: string, privateKey: string): SignResult;
-  export function signText(message: string, privatekey: string): string;
+  export function signText(message: string, privatekey: string): SignResult;
   export function signBlockData(data: object, privateKey: string): SignResult;
-  export function sigToAddress(msghash: string, hash: string): string;
+  export function sigToAddress(msghash: string, sig: string): string;
   export function hashBlockData(data: object): string;
-  export function signBlockData(data: object, privateKey: string): SignResult;
   export function sigToAddressFromBlock(data: object, sig: string): string;
   export function getSortedQS(obj: object): string;
   export function bufToHex(buffer: Buffer): string;
