@@ -36,3 +36,91 @@ console.log(sign);
 const keyPair = utility.createKeyPair({ dump: true });
 console.log(keyPair);
 ```
+
+## API
+
+`prs-utility` 提供了常用的加解密函数和一些用于格式转化的工具函数
+
+### recoverPrivateKey
+
+> recoverPrivateKey(keystore: string, password: string, options = { dump: true }): BufOrStr
+
+根据 keystore 的值和登录密码，计算出 private key，返回 hex 字符串 （可以传入额参数 options = { dump = false } 返回 buffer 格式）
+
+### privateKeyToAddress
+
+> privateKeyToAddress(privateKey: string): string
+
+根据 private key，计算出对应的 address
+
+### createKeyPair
+
+> createKeyPair(options = { dump: true }): KeyPair;
+
+```typescript
+interface KeyPair {
+  privateKey: BufOrStr, publicKey: BufOrStr, address: BufOrStr
+}
+```
+
+随机生成一对 key，options 同上述，可以传入 { dump: true } 返回 buffer
+
+### signHash
+
+> signHash(hash: string, privateKey: string): SignResult
+
+```typescript
+interface SignResult {
+  hash: string, signature: string
+}
+```
+
+对 hash 进行签名
+
+### signText
+
+> signText(message: string, privatekey: string): SignResult
+
+对文本进行签名，会先将文本通过 `keccak256` 算法得到 hash，然后再签名该 hash
+
+### signBlockData
+
+> signBlockData(data: object, privateKey: string): SignResult
+
+对对象进行签名，会先将对象进行处理（按照 key 升序排列后再序列化，紧接着进行 `keccak256`）得到 hash，然后签名该 hash
+
+### sigToAddress
+
+> sigToAddress(hash: string, signature，: string): string;
+
+通过 hash 和 signature，得到 address
+
+### hashBlockData
+
+> hashBlockData(data: object): string;
+
+对对象进行 hash，返回字符串。如上 `signBlockData` 内的步骤: 按照 key 升序排列后再序列化，紧接着进行 `keccak256`
+
+### sigToAddressFromBlock
+
+> sigToAddressFromBlock(data: object, sig: string): string
+
+根据对象和它的签名，得到地址
+
+### getSortedQS
+
+> getSortedQS(obj: object): string
+
+将 object 按照 key 升序排列后再序列化，得到字符串
+
+### bufToHex
+
+> bufToHex(buffer: Buffer): string
+
+buffer 转 hex 字符串
+
+### hexToBuf
+
+> hexToBuf(hex: string): Buffer
+
+hex 字符串转 buffer
