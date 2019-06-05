@@ -26,6 +26,17 @@ describe('Utility', function () {
     pair.should.have.ownProperty('address');
   });
 
+  it('signHash', function () {
+    const hash = 'd41d8cd98f00b204e9800998ecf8427e';
+    const privatekey = '6e204c62726a19fe3f43c4ca9739b7ffa37e4a3226f824f3e24e00a5890addc6';
+    const signature = '9134ff12fdca2f2f74397802bc60176be31a4d7d4d2d29e6dfe266b33679403a981fb3c3d53631ab8714b3272f2bf48d8edfa9094559484bf555d20bfd9b85670';
+    const sig = utility.signHash(hash, privatekey);
+    sig.should.have.ownProperty('hash');
+    sig.should.have.ownProperty('signature');
+    sig.hash.should.equal(hash);
+    sig.signature.should.equal(signature);
+  });
+
   it('sigToAddress', function () {
     const { privateKey, address } = utility.createKeyPair();
     const data = { a: 111, b: 222 };
