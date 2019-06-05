@@ -37,6 +37,19 @@ describe('Utility', function () {
     sig.signature.should.equal(signature);
   });
 
+  it('verifySignature', function () {
+    const hash = 'a70b44e0a41bc225914180dc0785fd71f8f018d90e76e3c5687e027ad273b695';
+    const privatekey = '6e204c62726a19fe3f43c4ca9739b7ffa37e4a3226f824f3e24e00a5890addc6';
+    const signatureBefore = '47e4f89120b4b50518ca5c1ffe6d4ff9a364053dbd832cc13afd286130be561f6a1f241605b58176716c3572822eab7f5e4fd20527da2854367bf57ab46a5eec1';
+    const signatureAfter = '47e4f89120b4b50518ca5c1ffe6d4ff9a364053dbd832cc13afd286130be561f6a1f241605b58176716c3572822eab7f5e4fd20527da2854367bf57ab46a5eec01';
+
+    const addrByPrivateKey = utility.privateKeyToAddress(privatekey);
+    const addrBySigAndHashBefore = utility.sigToAddress(hash, signatureBefore);
+    const addrBySigAndHashAfter = utility.sigToAddress(hash, signatureAfter);
+    addrByPrivateKey.should.equal(addrBySigAndHashBefore);
+    addrByPrivateKey.should.equal(addrBySigAndHashAfter);
+  });
+
   it('sigToAddress', function () {
     const { privateKey, address } = utility.createKeyPair();
     const data = { a: 111, b: 222 };
