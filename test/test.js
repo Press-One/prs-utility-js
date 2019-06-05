@@ -27,9 +27,9 @@ describe('Utility', function () {
   });
 
   it('signHash', function () {
-    const hash = 'd41d8cd98f00b204e9800998ecf8427e';
+    const hash = 'a70b44e0a41bc225914180dc0785fd71f8f018d90e76e3c5687e027ad273b695';
     const privatekey = '6e204c62726a19fe3f43c4ca9739b7ffa37e4a3226f824f3e24e00a5890addc6';
-    const signature = '9134ff12fdca2f2f74397802bc60176be31a4d7d4d2d29e6dfe266b33679403a981fb3c3d53631ab8714b3272f2bf48d8edfa9094559484bf555d20bfd9b85670';
+    const signature = '47e4f89120b4b50518ca5c1ffe6d4ff9a364053dbd832cc13afd286130be561f6a1f241605b58176716c3572822eab7f5e4fd20527da2854367bf57ab46a5eec01';
     const sig = utility.signHash(hash, privatekey);
     sig.should.have.ownProperty('hash');
     sig.should.have.ownProperty('signature');
