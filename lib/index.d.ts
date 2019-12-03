@@ -36,6 +36,7 @@ declare module "prs-utility" {
     alg: SignAlg
   ): SignResult;
   export function sigToAddress(msghash: string, sig: string): string;
+  export function hashText(message: string, alg: SignAlg): string;
   export function hashBlockData(data: object, alg: SignAlg): string;
   export function sigToAddressFromBlock(
     data: object,
