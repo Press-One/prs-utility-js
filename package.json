@@ -1,7 +1,7 @@
 {
   "name": "prs-utility",
   "description": "prs utility",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://press.one",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
