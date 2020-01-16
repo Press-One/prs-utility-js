@@ -23,6 +23,7 @@ declare module "prs-utility" {
   ): BufOrStr;
   export function privateKeyToAddress(privateKey: string): string;
   export var keccak256: Hash;
+  export var SHA256: any;
   export function createKeyPair(options?: object): KeyPair;
   export function signHash(hash: string, privateKey: string): SignResult;
   export function signText(
@@ -46,5 +47,6 @@ declare module "prs-utility" {
   export function getSortedQS(obj: object): string;
   export function bufToHex(buffer: Buffer): string;
   export function hexToBuf(hex: string): Buffer;
+  export function bufToWordArray(buffer: Buffer): any;
 }
 
