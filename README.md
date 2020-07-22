@@ -1,9 +1,5 @@
 prs-utility 是 PRS 提供的算法工具库，包含项目中需要使用的所有哈希、加密算法。
 
-## 注意
-
-[keythereum](https://github.com/ethereumjs/keythereum/issues/79) 依赖了 `scrypt` 导致，node 12 不被支持。
-
 ## 安装
 
 通过 npm 安装:
@@ -134,4 +130,3 @@ buffer 转 hex 字符串
 > hexToBuf(hex: string): Buffer
 
 hex 字符串转 buffer
-
